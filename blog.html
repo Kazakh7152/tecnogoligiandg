@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Блог</title>
+    <link rel="stylesheet" href="stylesblog.css">
+   
+</head>
+<body>
+  
+    <header>
+        <h1>Блог</h1>
+        <nav>
+          <ul class ="menu" >
+            <li><a href="index.html">Home</a></li>
+            <li><a href="\blog.html">Блог</a></li>
+            <li><a href="Contact.html">Войти</a></li>
+            <li><a href="404.html">Служба поддержки</a></li>
+        </ul>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h3>Последние...</h3>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; Контакт : +7 777 134 99 55 . Все права защищены.
+            Email : Kazakh@mail.ru
+        </p>
+    </footer>
+    <body class="bg">
+        <body class="inner">
+         
+        </body>
+        <div class="search_block">
+            <form> 
+              <input type="search" name="text" class="search" placeholder="Поиск">
+              <input type="submit" name="submit" class="submit" value="">
+            </form>
+            
+          </div>
+          <div class="slider" x-data="{start: true, end: false}" style="padding-top: 150px;">
+            <div class="slider__content" x-ref="slider" x-on:scroll.debounce="$refs.slider.scrollLeft == 0 ? start = true : start = false; Math.abs(($refs.slider.scrollWidth - $refs.slider.offsetWidth) - $refs.slider.scrollLeft) < 5 ? end = true : end = false;">
+              <div class="slider__item">
+                <img class="slider__image" src="img\ebc41c2c9f8aab273925ff07a9ac8e84.png" alt="Image">
+                <div class="slider__info">
+                  <h2>Новый ноутбук от.....</h2>
+                </div>
+              </div>
+              <div class="slider__item">
+                <img class="slider__image" src="img\pexels-citronovalimonada-687811.jpg" alt="Image">
+                <div class="slider__info">
+                  <h2>Новый Playstaysion уже...</h2>
+                </div>
+              </div>
+              <div class="slider__item">
+                <img class="slider__image" src="img\pexels-cottonbro-2773494.jpg" alt="Image">
+                <div class="slider__info">
+                  <h2>Кудабаев Нурбек из ВТиПО-22 выложил...</h2>
+                </div>
+              </div>
+              <div class="slider__item">
+                <img class="slider__image" src="img\pexels-cottonbro-7438102.jpg" alt="Image">
+                <div class="slider__info">
+                  <h2>Работаем в команде вместе с....</h2>
+                </div>
+              </div>
+              <div class="slider__item">
+                <img class="slider__image" src="img\pexels-ivan-samkov-7394334.jpg" alt="Image">
+                <div class="slider__info">
+                  <h2>Сегодня получу новую партию....</h2>
+                </div>
+              </div>
+              <div class="slider__item">
+                <img class="slider__image" src="img\pexels-john-tekeridis-21837-1072851.jpg" alt="Image">
+                <div class="slider__info">
+                  <h2>Алиса...</h2>
+                </div>
+              </div>
+              <div class="slider__item">
+                <img class="slider__image" src="img\pexels-mithulvarshan-3697717.jpg" alt="Image">
+                <div class="slider__info">
+                  <h2>Куда пропали фотографы?</h2>
+                </div>
+              </div>
+              <div class="slider__item">
+                <img class="slider__image" src="img\pexels-ola-dapo-1754561-3345882.jpg" alt="Image">
+                <div class="slider__info">
+                  <h2>Я не могу заснуть когда...</h2>
+                </div>
+              </div>
+              <div class="slider__item">
+                <img class="slider__image" src="img\pexels-pok-rie-33563-724921.jpg" alt="Image">
+                <div class="slider__info">
+                  <h2>Дроны опять ломаются?</h2>
+                </div>
+              </div>
+              <div class="slider__item">
+                <img class="slider__image" src="img\pexels-olly-927022.jpg" alt="Image">
+                <div class="slider__info">
+                  <h2>Даурен начал что-то делать с помощью...</h2>
+                </div>
+              </div>
+            </div>
+            <div class="slider__nav" style="display: flex;justify-content: center;">
+              <button class="slider__nav__button" x-on:click="$refs.slider.scrollBy({left: $refs.slider.offsetWidth * -1, behavior: 'smooth'});" x-bind:class="start ? '' : 'slider__nav__button--active'">Previous</button>
+              <button class="slider__nav__button" x-on:click="$refs.slider.scrollBy({left: $refs.slider.offsetWidth, behavior: 'smooth'});" x-bind:class="end ? '' : 'slider__nav__button--active'">Next</button>
+            </div>
+          </div>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.10.2/cdn.js"></script>
+     <style>
+        .unique-container {
+            position: absolute;
+            top: 350%;
+            left:85%;
+            transform: translate(-50%, -50%);
+            font-family: 'Poppins';
+        }
+    
+        .unique-container .main {
+            display: flex;
+            flex-wrap: wrap;
+            width: 14em;
+            align-items: center;
+            justify-content: center;
+            z-index: -1;
+        }
+        .unique-container .card {
+            width: 60px;
+            height: 60px;
+            border-top-left-radius: 10px;
+            background: rgba(255, 255, 255, 0.596);
+            backdrop-filter: blur(5px);
+            border: 1px solid transparent;
+            -webkit-backdrop-filter: blur(5px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: .4s ease-in-out, .2s background-color ease-in-out;
+        }
+        .unique-container .card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: inherit;
+            transition: opacity .2s ease-in-out;
+        }
+        .unique-container .main:hover {
+            width: 14em;
+            cursor: pointer;
+        }
+        .unique-container .main:hover .main_back {
+            opacity: 0;
+        }
+        .unique-container .main:hover .card {
+            margin: .2em;
+            border-radius: 10px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.334);
+            background: rgba(255, 255, 255, 0.2);
+        }
+        .unique-container .card:nth-child(1):hover {
+            background-color: #cc39a4;
+        }
+        .unique-container .card:nth-child(2):hover {
+            background-color: #03A9F4;
+        }
+        .unique-container .card:nth-child(3):hover {
+            background-color: #ffb5d2;
+        }
+        .unique-container .card:nth-child(4):hover {
+            background-color: #7baaf0;
+        }
+        .unique-container .card:nth-child(5):hover {
+            background-image: linear-gradient(#2096a3, #088981, #00DDEB);
+        }
+        .unique-container .card:nth-child(6):hover {
+            background-color: #8c9eff;
+        }
+        .unique-container .card:nth-child(7):hover {
+            background-color: rgb(33, 112, 202);
+        }
+        .unique-container .card:nth-child(8):hover {
+            background-color: #a00707;
+        }
+        .unique-container .card:nth-child(9):hover {
+            background-color: rgb(255, 69, 0);
+        }
+        .unique-container .text {
+            position: absolute;
+            font-size: 0.7em;
+            transition: .4s ease-in-out;
+            color: black;
+            text-align: center;
+            font-weight: bold;
+            letter-spacing: 0.33em;
+            z-index: 3;
+        }
+    </style>
+</head>
+<body>
+    <div class="unique-container">
+        <div class="main_back"></div>
+        <div class="main">
+            <div class="card"><img src="img\free-icon-instagram-3661391.png" alt="Image 1"></div>
+            <div class="card"><img src="img\free-icon-twitter-160194.png" alt="Image 2"></div>
+            <div class="card"><img src="img\free-icon-social-media-15713404.png" alt="Image 3"></div>
+            <div class="card"><img src="img\free-icon-facebook-app-symbol-20837.png" alt="Image 4"></div>
+            <div class="card"><img src="img\free-icon-social-media-15076591.png" alt="Image 6"></div>
+            <div class="card"><img src="img\free-icon-github-2111425.png" alt="Image 7"></div>
+            <div class="card"><img src="img\free-icon-telegram-logo-87413.png" alt="Image 8"></div>
+            <div class="card"><img src="img\free-icon-youtube-152810.png" alt="Image 9"></div>
+        </div>
+       
+    </div>
+
+    
+        
+    <style>
+      * {
+          margin: 0;
+          padding: 0;
+          -webkit-box-sizing: border-box;
+          -moz-box-sizing: border-box;
+          box-sizing: border-box;
+      }
+
+      a {
+          color: #03658c;
+          text-decoration: none;
+      }
+
+      ul {
+          list-style-type: none;
+      }
+
+      body {
+          font-family: 'Roboto', Arial, Helvetica, Sans-serif, Verdana;
+          background: #dee1e3;
+      }
+
+      /** ====================
+       * Lista de Comentarios
+       =======================*/
+      .comments-container {
+          margin: 60px auto 15px;
+          width: 768px;
+          position: absolute;
+          top:3700px;
+          left:650px;
+      }
+
+      .comments-container h1 {
+          font-size: 36px;
+          color: #283035;
+          font-weight: 400;
+      }
+
+      .comments-container h1 a {
+          font-size: 18px;
+          font-weight: 700;
+      }
+
+      .comments-list {
+          margin-top: 30px;
+          position: relative;
+      }
+
+      /**
+       * Lineas / Detalles
+       -----------------------*/
+      .comments-list:before {
+          content: '';
+          width: 2px;
+          height: 100%;
+          background: #c7cacb;
+          position: absolute;
+          left: 32px;
+          top: 0;
+      }
+
+      .comments-list:after {
+          content: '';
+          position: absolute;
+          background: #c7cacb;
+          bottom: 0;
+          left: 27px;
+          width: 7px;
+          height: 7px;
+          border: 3px solid #dee1e3;
+          -webkit-border-radius: 50%;
+          -moz-border-radius: 50%;
+          border-radius: 50%;
+      }
+
+      .reply-list:before,
+      .reply-list:after {
+          display: none;
+      }
+
+      .reply-list li:before {
+          content: '';
+          width: 60px;
+          height: 2px;
+          background: #c7cacb;
+          position: absolute;
+          top: 25px;
+          left: -55px;
+      }
+
+      .comments-list li {
+          margin-bottom: 15px;
+          display: block;
+          position: relative;
+      }
+
+      .comments-list li:after {
+          content: '';
+          display: block;
+          clear: both;
+          height: 0;
+          width: 0;
+      }
+
+      .reply-list {
+          padding-left: 88px;
+          clear: both;
+          margin-top: 15px;
+      }
+
+      /**
+       * Avatar
+       ---------------------------*/
+      .comments-list .comment-avatar {
+          width: 65px;
+          height: 65px;
+          position: relative;
+          z-index: 99;
+          float: left;
+          border: 3px solid #FFF;
+          -webkit-border-radius: 4px;
+          -moz-border-radius: 4px;
+          border-radius: 4px;
+          -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+          -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+          overflow: hidden;
+      }
+
+      .comments-list .comment-avatar img {
+          width: 100%;
+          height: 100%;
+      }
+
+      .reply-list .comment-avatar {
+          width: 50px;
+          height: 50px;
+      }
+
+      .comment-main-level:after {
+          content: '';
+          width: 0;
+          height: 0;
+          display: block;
+          clear: both;
+      }
+
+      /**
+       * Caja del Comentario
+       ---------------------------*/
+      .comments-list .comment-box {
+          width: 680px;
+          float: right;
+          position: relative;
+          -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+          -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+          box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+      }
+
+      .comments-list .comment-box:before,
+      .comments-list .comment-box:after {
+          content: '';
+          height: 0;
+          width: 0;
+          position: absolute;
+          display: block;
+          border-width: 10px 12px 10px 0;
+          border-style: solid;
+          border-color: transparent #FCFCFC;
+          top: 8px;
+          left: -11px;
+      }
+
+      .comments-list .comment-box:before {
+          border-width: 11px 13px 11px 0;
+          border-color: transparent rgba(0, 0, 0, 0.05);
+          left: -12px;
+      }
+
+      .reply-list .comment-box {
+          width: 610px;
+      }
+
+      .comment-box .comment-head {
+          background: #FCFCFC;
+          padding: 10px 12px;
+          border-bottom: 1px solid #E5E5E5;
+          overflow: hidden;
+          -webkit-border-radius: 4px 4px 0 0;
+          -moz-border-radius: 4px 4px 0 0;
+          border-radius: 4px 4px 0 0;
+      }
+
+      .comment-box .comment-head i {
+          float: right;
+          margin-left: 14px;
+          position: relative;
+          top: 2px;
+          color: #A6A6A6;
+          cursor: pointer;
+          -webkit-transition: color 0.3s ease;
+          -o-transition: color 0.3s ease;
+          transition: color 0.3s ease;
+      }
+
+      .comment-box .comment-head i:hover {
+          color: #03658c;
+      }
+
+      .comment-box .comment-name {
+          color: #283035;
+          font-size: 14px;
+          font-weight: 700;
+          float: left;
+          margin-right: 10px;
+      }
+
+      .comment-box .comment-name a {
+          color: #283035;
+      }
+
+      .comment-box .comment-head span {
+          float: left;
+          color: #999;
+          font-size: 13px;
+          position: relative;
+          top: 1px;
+      }
+
+      .comment-box .comment-content {
+          background: #FFF;
+          padding: 12px;
+          font-size: 15px;
+          color: #595959;
+          -webkit-border-radius: 0 0 4px 4px;
+          -moz-border-radius: 0 0 4px 4px;
+          border-radius: 0 0 4px 4px;
+      }
+
+      .comment-box .comment-name.by-author,
+      .comment-box .comment-name.by-author a {
+          color: #03658c;
+      }
+
+      .comment-box .comment-name.by-author:after {
+          content: 'autor';
+          background: #03658c;
+          color: #FFF;
+          font-size: 12px;
+          padding: 3px 5px;
+          font-weight: 700;
+          margin-left: 10px;
+          -webkit-border-radius: 3px;
+          -moz-border-radius: 3px;
+          border-radius: 3px;
+      }
+
+      /** =====================
+       * Responsive
+       ========================*/
+      @media only screen and (max-width: 766px) {
+          .comments-container {
+              width: 480px;
+          }
+
+          .comments-list .comment-box {
+              width: 390px;
+          }
+
+          .reply-list .comment-box {
+              width: 320px;
+          }
+      }
+  </style>
+</head>
+<body>
+  <div id="comments-container" class="comments-container">
+      <h1>Коментарий <a href="http://creaticode.com">Kazakhnews.com</a></h1>
+      <ul id="comments-list" class="comments-list">
+          <li>
+              <div class="comment-main-level">
+                  <!-- Avatar -->
+                  <div class="comment-avatar"><img src="http://i9.photobucket.com/albums/a88/creaticode/avatar_1_zps8e1c80cd.jpg" alt=""></div>
+                  <!-- Contenedor del Comentario -->
+                  <div class="comment-box">
+                      <div class="comment-head">
+                          <h6 class="comment-name by-author"><a href="http://creaticode.com/blog">Кудабаев Нурбек</a></h6>
+                          <span>20 минут назад</span>
+                          <i class="fa fa-reply"></i>
+                          <i class="fa fa-heart"></i>
+                      </div>
+                      <div class="comment-content">
+                          Как думаете народ я получу за это 100 баллов?
+                      </div>
+                  </div>
+              </div>
+              <!-- Respuestas de los comentarios -->
+              <ul class="comments-list reply-list">
+                  <li>
+                      <!-- Avatar -->
+                      <div class="comment-avatar"><img src="http://i9.photobucket.com/albums/a88/creaticode/avatar_2_zps7de12f8b.jpg" alt=""></div>
+                      <!-- Contenedor del Comentario -->
+                      <div class="comment-box">
+                          <div class="comment-head">
+                              <h6 class="comment-name"><a href="http://creaticode.com/blog">Даурен</a></h6>
+                              <span>10 минут назад</span>
+                              <i class="fa fa-reply"></i>
+                              <i class="fa fa-heart"></i>
+                          </div>
+                          <div class="comment-content">
+                              Возможно
+                          </div>
+                      </div>
+                  </li>
+                  <li>
+                      <!-- Avatar -->
+                      <div class="comment-avatar"><img src="http://i9.photobucket.com/albums/a88/creaticode/avatar_1_zps8e1c80cd.jpg" alt=""></div>
+                      <!-- Contenedor del Comentario -->
+                      <div class="comment-box">
+                          <div class="comment-head">
+                              <h6 class="comment-name by-author"><a href="http://creaticode.com/blog">Кудабаев Нурбек</a></h6>
+                              <span>5 минут назад</span>
+                              <i class="fa fa-reply"></i>
+                              <i class="fa fa-heart"></i>
+                          </div>
+                          <div class="comment-content">
+                              Не возможно, а точно!
+                          </div>
+                      </div>
+                  </li>
+              </ul>
+          </li>
+          <li>
+              <div class="comment-main-level">
+                  <!-- Avatar -->
+                  <div class="comment-avatar"><img src="http://i9.photobucket.com/albums/a88/creaticode/avatar_2_zps7de12f8b.jpg" alt=""></div>
+                  <!-- Contenedor del Comentario -->
+                  <div class="comment-box">
+                      <div class="comment-head">
+                          <h6 class="comment-name"><a href="http://creaticode.com/blog">Даурен</a></h6>
+                          <span>20 минуту назад</span>
+                          <i class="fa fa-reply"></i>
+                          <i class="fa fa-heart"></i>
+                      </div>
+                      <div class="comment-content">
+                          Коментарий.
+                      </div>
+                  </div>
+              </div>
+          </li>
+      </ul>
+  </div>
+ 
+    <div class="blog">
+  <div class="conteudo1">
+    <div class="post-info">
+      ПОСТ ОТ KazakhNews
+    </div>
+    <img src="img\pexels-pok-rie-33563-724921.jpg">
+    <h1> Дроны снова ломаются! </h1>
+    <hr>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </p>
+     <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </p>
+    <a href="#" class="continue-lendo">Read more →</a>
+  </div>
+    <div class="conteudo2">
+    <div class="post-info">
+    Пост от KAZAKHNEWS
+    </div>
+    <img src="https://designculture.com.br/wp-content/uploads/2013/07/14.-flat-design.jpg">
+    <h1> Расспродажа от наших партнеров! </h1>
+    <hr>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </p>
+     <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </p>
+      <a href="#" class="continue-lendo">Read more →</a>
+      <div class="blog">
+        <div class="conteudo3">
+          <div class="post-info">
+            ПОСТ ОТ KazakhNews
+          </div>
+          <img src="img\pexels-pok-rie-33563-724921.jpg">
+          <h1> Дроны снова ломаются! </h1>
+          <hr>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          </p>
+           <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          </p>
+          <a href="#" class="continue-lendo">Read more →</a>
+        </div>
+        <div class="blog">
+          <div class="conteudo4">
+            <div class="post-info">
+              ПОСТ ОТ KazakhNews
+            </div>
+            <img src="img\pexels-pok-rie-33563-724921.jpg">
+            <h1> Дроны снова ломаются! </h1>
+            <hr>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </p>
+             <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </p>
+            <a href="#" class="continue-lendo">Read more →</a>
+          </div>
+          <div class="blog">
+            <div class="conteudo5">
+              <div class="post-info">
+                ПОСТ ОТ KazakhNews
+              </div>
+              <img src="img\pexels-pok-rie-33563-724921.jpg">
+              <h1> Дроны снова ломаются! </h1>
+              <hr>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </p>
+               <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </p>
+              <a href="#" class="continue-lendo">Read more →</a>
+            </div>
+            <div class="blog">
+              <div class="conteudo6">
+                <div class="post-info">
+                  ПОСТ ОТ KazakhNews
+                </div>
+                <img src="img\pexels-pok-rie-33563-724921.jpg">
+                <h1> Дроны снова ломаются! </h1>
+                <hr>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </p>
+                 <p>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </p>
+                <a href="#" class="continue-lendo">Read more →</a>
+              </div>
+              <div class="blog">
+                <div class="conteudo7">
+                  <div class="post-info">
+                    ПОСТ ОТ KazakhNews
+                  </div>
+                  <img src="img\pexels-pok-rie-33563-724921.jpg">
+                  <h1> Дроны снова ломаются! </h1>
+                  <hr>
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                  </p>
+                   <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                  </p>
+                  <a href="#" class="continue-lendo">Read more →</a>
+                </div>
+  </div>
+  </div>
+</div>
+  
+</body>
+
+
+</html>
